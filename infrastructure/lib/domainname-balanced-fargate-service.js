@@ -293,7 +293,7 @@ class DomainnameBalancedFargateService extends Stack {
                 conditions: [
                     elb.ListenerCondition.hostHeaders(props.domainNames)
                 ],
-                priority: 2
+                priority: 60
             }
         )
 
@@ -362,7 +362,7 @@ class DomainnameBalancedFargateService extends Stack {
                     conditions: [
                         elb.ListenerCondition.hostHeaders(props.domainNames)
                     ],
-                    priority: 2
+                    priority: 60
                 }
             )
         }
