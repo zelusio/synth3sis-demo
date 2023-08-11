@@ -7,10 +7,21 @@ import ellipse969 from "@/assets/img/ellipse-969.svg";
 import smooth1 from '@/assets/img/smooth-1.png'
 import rightArrow from "@/assets/img/right-arrow.svg";
 import flag from '@/assets/img/Icon/Feedback Flag.svg'
+import {useState} from "react";
+import axios from "axios";
 
 const spaceGrotesk = Space_Grotesk({subsets: ['latin']})
 
 export function Claim({}) {
+
+    const [email, setEmail] = useState<string>('')
+
+    const claimNft = async () => {
+        const response = await axios.post('/api/mint', {email})
+        const {walletId, walletAddress} = response.data
+        console.log(`got wallet data`, walletId, walletAddress)
+        alert(`NFT claimed to wallet ${walletAddress} for email ${email}`)
+    }
 
     return (
         <>
@@ -38,9 +49,10 @@ export function Claim({}) {
                             placeholder={'Enter your email address'}
                             className={styles.claimGroup__input}
                             style={spaceGrotesk.style}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
-                        <div className={styles.claimGroup__button}>
+                        <div className={styles.claimGroup__button} onClick={claimNft}>
                             <div className={styles.claimGroup__button__text} style={spaceGrotesk.style}>Claim Now</div>
                             <Image src={flag} alt={''} className={styles.claimGroup__button__icon}/>
                         </div>
