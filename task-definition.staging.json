@@ -1,10 +1,10 @@
 {
-  "taskRoleArn": "ecs-hello-world-2-task-role-staging",
-  "executionRoleArn": "ecs-hello-world-2-execution-role-staging",
+  "taskRoleArn": "ecs-synth3sis-demo-task-role-staging",
+  "executionRoleArn": "ecs-synth3sis-demo-execution-role-staging",
   "containerDefinitions": [
     {
-      "name": "hello-world-2",
-      "image": "hello-world-2:staging",
+      "name": "synth3sis-demo",
+      "image": "synth3sis-demo:staging",
       "portMappings": [
         {
           "hostPort": 8000,
@@ -21,15 +21,15 @@
         },
         {
           "name": "SERVICENAME",
-          "value": "hello-world-2"
+          "value": "synth3sis-demo"
         }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/hello-world-2/staging",
+          "awslogs-group": "/ecs/synth3sis-demo/staging",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "hello-world-2-staging"
+          "awslogs-stream-prefix": "synth3sis-demo-staging"
         }
       }
     }
@@ -40,7 +40,7 @@
   "inferenceAccelerators": [],
   "cpu": "256",
   "memory": "512",
-  "family": "ecs-hello-world-2-task-definition-staging",
+  "family": "ecs-synth3sis-demo-task-definition-staging",
   "networkMode": "awsvpc",
   "volumes": [],
   "placementConstraints": []
