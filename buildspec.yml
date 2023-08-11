@@ -1,0 +1,20 @@
+version: 2.0
+
+phases:
+
+  # install and configure the environment
+  install:
+
+    # runtime
+    runtime-versions:
+      nodejs: 16 # do NOT use latest, as Node 18 is breaking
+
+    # commands to run
+    commands:
+      - npm install # includes all deve dependencies
+
+  pre_build:
+    commands:
+      - npm run test
+
+

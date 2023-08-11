@@ -1,0 +1,47 @@
+{
+  "taskRoleArn": "ecs-hello-world-2-task-role-dev",
+  "executionRoleArn": "ecs-hello-world-2-execution-role-dev",
+  "containerDefinitions": [
+    {
+      "name": "hello-world-2",
+      "image": "hello-world-2:dev",
+      "portMappings": [
+        {
+          "hostPort": 8000,
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "resourceRequirements": null,
+      "environment": [
+        {
+          "name": "ENVIRONMENT",
+          "value": "dev"
+        },
+        {
+          "name": "SERVICENAME",
+          "value": "hello-world-2"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/hello-world-2/dev",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "hello-world-2-dev"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "inferenceAccelerators": [],
+  "cpu": "256",
+  "memory": "512",
+  "family": "ecs-hello-world-2-task-definition-dev",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": []
+}

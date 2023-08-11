@@ -1,0 +1,57 @@
+name: Tests
+
+# controls when the workflow will run
+on:
+
+  # run on push to branches
+  push:
+    branches: [master, staging, develop]
+  # run on PR to branches
+
+  pull_request:
+    branches: [master, staging, develop]
+
+  # allows running the workflow manually
+  workflow_dispatch:
+
+# workflows are made of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # set up dependencies
+  test:
+    name: Run Test Cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run test
+        env:
+          ENVIRONMENT: dev
+          AWS_ACCESS_KEY_ID: ${{ secrets.CDK_DEPLOYMENT_AMAZON_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CDK_DEPLOYMENT_AMAZON_SECRET_KEY }}
+
+  build:
+    name: Build Dockerfile
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        users: actions/checkout@v3
+
+      - name: Build the Dockerfile
+        id: build-dockerfile
+        env:
+          AWS_REGION: 'us-east-1'
+          TAG: staging-${{ github.sha }}
+          SERVICENAME: ${{ secrets.SERVICENAME }}
+          ENVIRONMENT: dev
+        run: |
+          docker build -t $SERVICENAME:$TAG .

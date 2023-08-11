@@ -1,0 +1,66 @@
+name: 'Slack notify'
+description: 'Post message to slack channel'
+inputs:
+  slack-bot-token:
+    description: 'Bot token from slack app'
+    required: true
+  slack-bot-channel:
+    description: 'Slack channel id to post message'
+    required: true
+  env-name:
+    description: 'Environment name'
+    default: 'dev'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - uses: slackapi/slack-github-action@v1.23.0
+      env:
+        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
+      with:
+        # See also: https://api.slack.com/methods/chat.postMessage#channels
+        # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+        channel-id: ${{ inputs.slack-bot-channel }}
+        # For posting a rich message using Block Kit
+        payload: |
+          {
+            "text": "*${{ github.event.repository.name }}* (*${{ inputs.env-name }}*) deployment is finished.",
+            "attachments": [
+              {
+                "mrkdwn_in": ["text"],
+                "color": "28a745",
+                "author_name": "${{ github.event.organization.login }}",
+                "author_link": "${{ github.event.organization.url }}",
+                "author_icon": "${{ github.event.organization.avatar_url }}",
+                "title": "GitHub action run link",
+                "title_link": "${{github.event.repository.html_url}}/actions/runs/${{github.run_id}}",
+                "fields": [
+                  {
+                    "title": "Repository",
+                    "short": true,
+                    "value": "<${{ github.event.repository.html_url }}|${{ github.event.repository.full_name }}>"
+                  },
+                  {
+                    "title": "Status",
+                    "short": true,
+                    "value": "${{ job.status }}"
+                  },
+                  {
+                    "title": "Branch",
+                    "short": true,
+                    "value": "${{ github.ref_name }}"
+                  },
+                  {
+                    "title": "Triggering Actor",
+                    "short": true,
+                    "value": "${{ github.triggering_actor }}"
+                  },
+                  {
+                    "title": "Commit",
+                    "short": false,
+                    "value": ${{ toJSON(github.event.head_commit.message) }}
+                  }
+                ]
+              }
+            ]
+          }
