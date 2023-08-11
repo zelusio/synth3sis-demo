@@ -1,9 +1,18 @@
-FROM node:16
+FROM oven/bun:latest
 
 WORKDIR /opt/app
 COPY package*.json ./
-RUN npm install --prod
+ENV PORT=3000
+ENV NODE_ENV=production
+# install bun
+RUN bun install
 COPY ./src .
+COPY ./public .
+COPY .env .
+COPY next.config.js .
+COPY next-env.d.ts .
 
-EXPOSE 8000
-CMD node app.js
+RUN bun run build
+
+EXPOSE 3000
+CMD bun run start
