@@ -20,7 +20,7 @@ export function Claim({}) {
         const response = await axios.post('/api/mint', {email})
         const {walletId, walletAddress} = response.data
         console.log(`got wallet data`, walletId, walletAddress)
-        alert(`NFT claimed to wallet ${walletAddress} for email ${email}`)
+        alert(`NFT claimed to wallet ${walletAddress} for email ${email} - https://polygonscan.com/address/${walletAddress}#tokentxnsErc1155`)
     }
 
     return (
