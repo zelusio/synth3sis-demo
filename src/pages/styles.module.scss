@@ -1,0 +1,136 @@
+.main {
+  background-color: #FFF5e9;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 0.75rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ellipse970 {
+  width: 242px;
+  height: 242px;
+  flex-shrink: 0;
+  position: absolute;
+  top: -116px;
+  left: -116px;
+
+  stroke-width: 2px;
+  color: black;
+}
+
+.ellipse971 {
+  width: 338px;
+  height: 338px;
+  flex-shrink: 0;
+
+  position: absolute;
+  top: -166px;
+  left: -139px;
+
+  border-radius: 21.125rem;
+}
+
+.ellipse972 {
+  width: 194px;
+  height: 194px;
+  flex-shrink: 0;
+
+  position: absolute;
+  top: -101px;
+  left: -100px;
+
+}
+
+.ellipse969 {
+  width: 420px;
+  height: 420px;
+  flex-shrink: 0;
+
+  position: absolute;
+  top: 615px;
+  left: -22px;
+
+  border-radius: 420px;
+  background: #ffd199;
+  filter: blur(100px);
+}
+
+.star5 {
+  width: 276px;
+  height: 276px;
+  position: absolute;
+  right: 0;
+  top: 355px;
+  z-index: 0;
+}
+
+.heroContent {
+  display: flex;
+  width: 327px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0 auto;
+  z-index: 1;
+
+  &__title {
+    color: black;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    color: #5a5a5a;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  &__button {
+    display: flex;
+    height: 56px;
+    padding: 16px 24px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: black;
+    cursor: pointer;
+
+    &__text {
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    &__arrow {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__button:hover {
+    box-shadow: black 0 0 16px 0;
+  }
+}
+
+.gradientTop {
+  width: 100vw;
+  height: 240px;
+  flex-shrink: 0;
+  background: linear-gradient(0deg, rgba(255, 213, 161, 0.00) 0%, rgba(255, 213, 161, 0.40) 55.21%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}

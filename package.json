@@ -1,28 +1,26 @@
 {
-  "name": "hello-world",
-  "version": "0.0.0",
+  "name": "app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "bootstrap:ecr": "cd cdk && cdk deploy",
-    "bootstrap:taskdef": "node scripts/prepare-task-definition.js",
-    "bootstrap": "",
-    "test": "mocha tests/**/*.test.js --timeout 2000 --exit"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.154.0",
-    "aws-cdk": "^2.38.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
-  },
-  "devDependencies": {
-    "axios": "^0.27.2",
-    "chai": "^4.3.6",
-    "child_process": "^1.0.2",
-    "dotenv": "^16.0.1",
-    "mocha": "^10.0.0"
+    "@types/node": "20.4.9",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "axios": "^1.4.0",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.13",
+    "gs": "^0.0.2",
+    "next": "13.4.13",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.65.1",
+    "scss": "^0.2.4",
+    "typescript": "5.1.6"
   }
 }
