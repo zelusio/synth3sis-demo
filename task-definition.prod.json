@@ -1,14 +1,14 @@
 {
-  "taskRoleArn": "ecs-hello-world-2-task-role-prod",
-  "executionRoleArn": "ecs-hello-world-2-execution-role-prod",
+  "taskRoleArn": "ecs-synth3sis-demo-task-role-prod",
+  "executionRoleArn": "ecs-synth3sis-demo-execution-role-prod",
   "containerDefinitions": [
     {
-      "name": "hello-world-2",
-      "image": "hello-world-2:prod",
+      "name": "synth3sis-demo",
+      "image": "synth3sis-demo:prod",
       "portMappings": [
         {
-          "hostPort": 8000,
-          "containerPort": 8000,
+          "hostPort": 3000,
+          "containerPort": 3000,
           "protocol": "tcp"
         }
       ],
@@ -21,15 +21,15 @@
         },
         {
           "name": "SERVICENAME",
-          "value": "hello-world-2"
+          "value": "synth3sis-demo"
         }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/hello-world-2/prod",
+          "awslogs-group": "/ecs/synth3sis-demo/prod",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "hello-world-2-prod"
+          "awslogs-stream-prefix": "synth3sis-demo-prod"
         }
       }
     }
@@ -40,7 +40,7 @@
   "inferenceAccelerators": [],
   "cpu": "256",
   "memory": "512",
-  "family": "ecs-hello-world-2-task-definition-prod",
+  "family": "ecs-synth3sis-demo-task-definition-prod",
   "networkMode": "awsvpc",
   "volumes": [],
   "placementConstraints": []

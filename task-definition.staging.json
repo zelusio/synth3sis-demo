@@ -7,8 +7,8 @@
       "image": "synth3sis-demo:staging",
       "portMappings": [
         {
-          "hostPort": 8000,
-          "containerPort": 8000,
+          "hostPort": 3000,
+          "containerPort": 3000,
           "protocol": "tcp"
         }
       ],
