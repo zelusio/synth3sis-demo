@@ -28,7 +28,8 @@ export default function Home() {
                     <Image src={ellipse970} className={styles.ellipse970} alt={''}/>
                     <Image src={ellipse971} className={styles.ellipse971} alt={''}/>
                     <Image src={ellipse972} className={styles.ellipse972} alt={''}/>
-                    <Image src={ellipse969} className={styles.ellipse969} alt={''}/>
+
+                    <Image src={ellipse969} className={styles.ellipse969} style={{}} alt={''}/>
                     <Image src={star5} className={styles.star5} alt={''}/>
 
                     <div className={styles.heroContent}>

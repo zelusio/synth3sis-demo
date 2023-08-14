@@ -49,8 +49,9 @@
   height: 420px;
   flex-shrink: 0;
 
-  position: absolute;
-  top: 615px;
+  position: fixed;
+  bottom: -50px;
+
   left: -22px;
 
   border-radius: 420px;
