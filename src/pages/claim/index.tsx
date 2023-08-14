@@ -9,10 +9,13 @@ import rightArrow from "@/assets/img/right-arrow.svg";
 import flag from '@/assets/img/Icon/Feedback Flag.svg'
 import matic from '@/assets/img/Icon/Matic.svg'
 import wallet from '@/assets/img/Icon/Wallet.svg'
+import check from '@/assets/img/Icon/check.svg'
+import close from '@/assets/img/Icon/close.svg'
 import {useState, useEffect} from "react";
 import axios from "axios";
 import UAParser from 'ua-parser-js'
 import BottomSheet from "@/components/BottomSheet";
+import Modal from '@/components/Modal';
 
 const spaceGrotesk = Space_Grotesk({subsets: ['latin']})
 
@@ -42,7 +45,6 @@ export function Claim({userAgent}: IClaimProps) {
     const isMobile = parser.getDevice().type === 'mobile'
 
 
-
     const claimNft = async () => {
         const response = await axios.post('/api/mint', {email})
         const {walletId, walletAddress} = response.data
@@ -54,6 +56,34 @@ export function Claim({userAgent}: IClaimProps) {
         console.log(`windows opened`)
     }
 
+    const bottomSheetContents = (
+        <>
+            {/*Title*/}
+            <span style={spaceGrotesk.style} className={styles.nftMintedTitle}>NFT Minted!</span>
+
+            <Image src={check} alt={''} className={styles.checkIcon}/>
+            <span style={spaceGrotesk.style} className={styles.nftMintedSubtitle}>It may may take a second for your NFT to mint. Use one of the links below to view it. </span>
+
+            {/*TODO use the address to poll the chain and wait for incoming txs*/}
+
+            <div className={styles.claimGroup__button} onClick={() => {
+                const newTab = window.open(`https://polygonscan.com/address/${walletAddress}#tokentxnsErc1155`, '_blank')
+                newTab?.focus()
+            }}>
+                <div className={styles.claimGroup__button__text} style={spaceGrotesk.style}>View on Polygonscan</div>
+                <Image src={matic} alt={''} className={styles.claimGroup__button__icon}/>
+            </div>
+
+            <div className={styles.claimGroup__button} onClick={() => {
+                const newTab = window.open(`https://gallery.zelus.io/nfts/${walletAddress}`, '_blank')
+                newTab?.focus()
+            }}>
+                <div className={styles.claimGroup__button__text} style={spaceGrotesk.style}>View in Wallet</div>
+                <Image src={wallet} alt={''} className={styles.claimGroup__button__icon}/>
+            </div>
+        </>
+    )
+
     return (
         <>
             <Head>
@@ -63,7 +93,8 @@ export function Claim({userAgent}: IClaimProps) {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={styles.main} style={spaceGrotesk.style}>
-                <div className={`${styles.main} ${showPostClaim ? styles.mainContentBlurred : ''}`}>
+                <div className={styles.main}>
+
                     <div className={styles.gradientTop}></div>
                     <Image src={ellipse969} className={styles.ellipse969} alt={''}/>
 
@@ -94,32 +125,31 @@ export function Claim({userAgent}: IClaimProps) {
             </main>
 
             {showPostClaim &&
-                <BottomSheet isOpen={showPostClaim && isMobile}>
-                    <>
-                        {/*Title*/}
-                        <span style={spaceGrotesk.style} className={styles.nftMintedTitle}>NFT Minted!</span>
-                        <span style={spaceGrotesk.style} className={styles.nftMintedSubtitle}>It may may take a second for your NFT to mint. Use one of the links below to view it. </span>
 
+                <>
+                    <div className={styles.mainContentBlurred} onClick={() => setShowPostClaim(false)}></div>
 
-                        {/*TODO use the address to poll the chain and wait for incoming txs*/}
+                    {isMobile ? <BottomSheet isOpen={showPostClaim}>
+                            <>
+                                <div className={styles.closeBottomSheet} onClick={() => setShowPostClaim(false)}>
+                                    <Image src={close} alt={''} className={styles.closeBottomSheet__icon}/>
+                                </div>
+                                {bottomSheetContents}
+                            </>
 
-                        <div className={styles.claimGroup__button} onClick={() => {
-                            const newTab = window.open(`https://polygonscan.com/address/${walletAddress}#tokentxnsErc1155`, '_blank')
-                            newTab?.focus()
-                        }}>
-                            <div className={styles.claimGroup__button__text} style={spaceGrotesk.style}>View on Polygonscan</div>
-                            <Image src={matic} alt={''} className={styles.claimGroup__button__icon}/>
-                        </div>
+                        </BottomSheet> :
+                        <Modal isOpen={showPostClaim}>
+                            <>
+                                <div className={styles.closeBottomSheet} onClick={() => setShowPostClaim(false)}>
+                                    <Image src={close} alt={''} className={styles.closeBottomSheet__icon}/>
+                                </div>
+                                {bottomSheetContents}
+                            </>
+                        </Modal>
+                    }
 
-                        <div className={styles.claimGroup__button} onClick={() => {
-                            const newTab = window.open(`https://gallery.zelus.io/nfts/${walletAddress}`, '_blank')
-                            newTab?.focus()
-                        }}>
-                            <div className={styles.claimGroup__button__text} style={spaceGrotesk.style}>View in Wallet</div>
-                            <Image src={wallet} alt={''} className={styles.claimGroup__button__icon}/>
-                        </div>
-                    </>
-                </BottomSheet>
+                </>
+
             }
         </>
     )

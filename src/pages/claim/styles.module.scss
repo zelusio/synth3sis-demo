@@ -144,6 +144,11 @@
   background: rgba(0, 0, 0, 0.20);
   backdrop-filter: blur(5px);
   z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .nftMintedSubtitle {
@@ -153,4 +158,15 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 142.857% */
+}
+
+.closeBottomSheet {
+
+  flex-direction: column;
+  cursor: pointer;
+  &__icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
 }

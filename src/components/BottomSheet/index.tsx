@@ -11,7 +11,7 @@ export function BottomSheet({children, isOpen}: IBottomSheetProps) {
     useEffect(() => {
         if (isOpen) setIsOpenState(true)
 
-    })
+    }, [])
 
     return (
         <div className={`${styles.bottomSheet} ${isOpenState ? styles.bottomSheet__onscreen : styles.bottomSheet__offscreen}`}>
