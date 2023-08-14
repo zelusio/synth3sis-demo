@@ -21,6 +21,13 @@ export function Claim({}) {
         const {walletId, walletAddress} = response.data
         console.log(`got wallet data`, walletId, walletAddress)
         alert(`NFT claimed to wallet ${walletAddress} for email ${email} - https://polygonscan.com/address/${walletAddress}#tokentxnsErc1155`)
+
+        setTimeout(() => {
+            window.open(`https://gallery.zelus.io/nfts/${walletAddress}`, '_blank');
+            window.open(`https://polygonscan.com/address/${walletAddress}#tokentxnsErc1155`, '_blank');
+
+        }, 2000)
+        console.log(`windows opened`)
     }
 
     return (
