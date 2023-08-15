@@ -23,6 +23,7 @@
     "react-dom": "18.2.0",
     "sass": "^1.65.1",
     "scss": "^0.2.4",
+    "sharp": "^0.32.4",
     "typescript": "5.1.6",
     "ua-parser-js": "^1.0.35"
   },
