@@ -35,8 +35,8 @@ jobs:
         run: npm run test
         env:
           ENVIRONMENT: dev
-          AWS_ACCESS_KEY_ID: ${{ secrets.CDK_DEPLOYMENT_AMAZON_ACCESS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.CDK_DEPLOYMENT_AMAZON_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   build:
     name: Build Dockerfile
