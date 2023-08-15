@@ -1,6 +1,8 @@
-import axios, {Axios, AxiosInstance} from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import {remoteSecrets} from './secrets.service'
 
+// Once remote Secrets are loaded from AWSSM, create an axios instance with the Base URL and API key.
+// (this part is optional - you can use a .env file instead of a remote secrets manager)
 const axiosInstance = new Promise<AxiosInstance>(async (resolve) => {
 
     const {SYNTH3SIS_API_KEY, SYNTH3SIS_API_URL} = await remoteSecrets()
@@ -15,7 +17,8 @@ const axiosInstance = new Promise<AxiosInstance>(async (resolve) => {
 });
 
 /**
- * Get wallet address & wallet ID for email
+ * Get wallet address & wallet ID for email - if a wallet already exists for the email, it is retrieved.
+ *  If not, a new wallet is created & its' information is retrieved.
  * @param email - the email to get a wallet for
  * @returns {Promise<{walletId: string, walletAddress: string}>} - the wallet ID and wallet address
  */
@@ -30,6 +33,10 @@ export async function getWalletForEmail(email: string): Promise<{ walletId: stri
 
 }
 
+/**
+ * Mint an NFT to a wallet on a contract that has been deployed and configured in the Synth3sis service
+ * @param walletAddress - the wallet address to mint to
+ */
 export async function mintNftToWallet(walletAddress: string): Promise<any> {
     const response = await (await axiosInstance).post(`/v1/nft/mint`, {
         walletAddress,

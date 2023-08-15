@@ -7,11 +7,17 @@ type Data = {
   walletAddress: string
 }
 
+/**
+ * The API route handler for /api/mint
+ * @param req
+ * @param res
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
 
+  // Retrieve the email from the request body
   const {email} = req.body
 
   // Get the wallet for the email
@@ -21,7 +27,7 @@ export default async function handler(
   // mint the NFT to the email
   await mintNftToWallet(walletAddress)
 
-
+  // Return the wallet address and wallet ID to the client
   return res.json({walletAddress, walletId})
 
 }

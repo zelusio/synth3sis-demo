@@ -59,10 +59,10 @@ export function Claim({userAgent}: IClaimProps) {
     const bottomSheetContents = (
         <>
             {/*Title*/}
-            <span style={spaceGrotesk.style} className={styles.nftMintedTitle}>NFT Minted!</span>
+            <span style={spaceGrotesk.style} className={styles.nftMintedTitle}>NFT Minting!</span>
 
             <Image src={check} alt={''} className={styles.checkIcon}/>
-            <span style={spaceGrotesk.style} className={styles.nftMintedSubtitle}>It may may take a second for your NFT to mint. Use one of the links below to view it. </span>
+            <span style={spaceGrotesk.style} className={styles.nftMintedSubtitle}>It may take up to a minute for your NFT to mint. Once it has minted, you can use the links below to check it out! </span>
 
             {/*TODO use the address to poll the chain and wait for incoming txs*/}
 
@@ -103,7 +103,7 @@ export function Claim({userAgent}: IClaimProps) {
                         <p className={styles.main__header__text} style={spaceGrotesk.style}> Claim your NFT Now</p>
                     </div>
 
-                    <Image src={smooth1} alt={''} className={styles.main__image}/>
+                    <Image src={smooth1} alt={''} className={styles.main__image} priority={true} placeholder={'blur'}/>
 
                     <div className={styles.claimGroup}>
                         <input

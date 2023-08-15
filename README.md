@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zelus Synth3sis API Demo
+This is a  [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) that we built to show off
+how easy it is to integrate the [Synth3sis API](https://docs.synth3sis.io) into your apps to offer invisible wallets, gas-less NFT minting and more to your users!
+
+## Quick Links
+Before we get started, are you **looking for more resources?** Check out the following quick Links
+* [Synth3sis API Docs](https://docs.synth3sis.io) - Our official documentation
+* [API Swagger Docs](https://sandbox.api.synth3sis.io/docs) - Swagger docs with a request builder
+* [Synth3sis API Demo](https://demo.synth3sis.io) - This is a live version of this app :)
 
 ## Getting Started
 
@@ -16,23 +24,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/mint.ts`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/mint](http://localhost:3000/api/mint). This endpoint can be edited in `pages/api/mint.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Synth3sis API
+The Synth3sis API is implemented in the `src/services/synth3sis.service.ts`. This service is called in the `/api/mint` API route (`src/pages/api/mint.ts`) 
+ to create or retrieve a wallet for a user, and to mint an NFT for that user.
